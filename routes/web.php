@@ -39,10 +39,12 @@ Route::get('transaccion/demo', function () {
 
 Route::get('/transacciones', [TransaccionController::class, 'index'])->name('transacciones.index');
 
+Route::get('/transaccion/{transaccion}', [TransaccionController::class, 'show']);
+
 Route::get('/eventos-transaccion', [EventoTransaccionController::class, 'index'])->name('eventos-transaccion.index');
 
 Route::prefix('comercios')->name('comercios.')->group(function () {
     Route::get('/', [ComercioController::class, 'index'])->name('index');
     
-    Route::get('/{id}', [ComercioController::class, 'show'])->where('id', '[0-9]+')->name('show');
+Route::get('/comercio/{comercio}', [ComercioController::class, 'show']);
 });

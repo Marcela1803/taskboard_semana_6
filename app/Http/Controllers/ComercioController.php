@@ -3,20 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comercio;
 
 class ComercioController extends Controller
 {
     public function index()
     {
-        $comercios = [
-            ['id' => 1, 'nombre' => 'Café Amanecer'],
-            ['id' => 2, 'nombre' => 'Ferretería San José'],
-            ['id' => 3, 'nombre' => 'Pupusería El Buen Sabor'],
-        ];
-        return $comercios;
+    return Comercio::with('transacciones')->get();
     }
-    public function show($id)
+
+    public function show(Comercio $comercio)
     {
-        return "Detalle del comercio #$id";
+    return $comercio->load('transacciones');
     }
 }
